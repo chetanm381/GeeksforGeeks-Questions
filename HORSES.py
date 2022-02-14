@@ -1,11 +1,16 @@
 def Horses(x,a):
+    a.sort()
     min=abs(a[0]-a[1])
-    for i in range(0,x-1):
-        for j in range(i+1,x):
-            t=abs(a[i]-a[j])
-            if(min>t):
-                min=t
-    print(min)            
+    for i in range(1,x-1):
+        t=abs(a[i]-a[i+1])
+        if(t<min):
+            min=t
+    print(min)
+    
+
+            
+            
+
 
 
 
