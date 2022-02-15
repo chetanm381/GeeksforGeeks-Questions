@@ -1,14 +1,17 @@
 def match(ps):
     ps=list(ps)
     temp=[]
+    dictt={"{":"}","(":")","[":"]"}
     for x in ps:
-        if x=="{":
-            temp.append("{")
-        if x=="}":
+        if x in dictt.keys():
+            temp.append(x)
+        if x in dictt.values():
             try:
-                temp.pop()    
+                t=temp.pop()
+                if(dictt[t]!=x):
+                    return False    
             except:
-                return False     
+                return False           
     if(len(temp)==0):
         return True
     else:
@@ -16,8 +19,8 @@ def match(ps):
 
 
 if __name__ == '__main__':
-    testCases = ["{{}}", "{{{}}", "{{{{}}}","{{{}{}}}","}{"]
-    results = [True, False, False,True,False]
+    testCases = ["{{}}", "{{{}}", "{{{{}}}","{{{}{}}}",  "}{","([][{({}){}}])",")[{({}){}}]())","([{})]"]
+    results =   [True  ,   False,     False,      True, False,             True,           False,   False]
     for i in range(len(testCases)):
         if match(testCases[i]) == results[i]:
             print("Test Succeed ",i)
